@@ -2,13 +2,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 8px #ffffff40;
+    box-shadow: 0 2px 8px #00000040;
     padding: 0.5rem;
-    margin: 1rem 0;
+    margin: 1rem;
     border-radius: 12px;
     background-color: #8b4dc2;
-    font-size: 2rem;
-    max-height: 30%;
+    font-size: 1.3rem;
+    
 }
 
 .product-img{
@@ -16,4 +16,12 @@
     
 }
 
+.product{
+    
+    justify-content: space-around;
+    width: 100%;
+}
 
+.product-info{
+    margin-left: 2rem;
+}

@@ -6,9 +6,9 @@ const Product=({product})=>{
     return (
         <div className='product'>
         <ul className='product-items'>
-        <div>
+        <div className='product-info'>
         <p className='product-title'>{product.title}</p>
-        <p className='product-price'>{product.price}</p>
+        <p className='product-price'>{product.price}$</p>
         </div>
         <img className="product-img"  src={product.images[0]}></img>
         </ul>

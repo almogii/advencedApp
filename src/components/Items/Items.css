@@ -1,0 +1,11 @@
+
+.product-img{
+    position: relative;
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    object-position: 55%;
+    border: 3px solid black;
+    border-radius: 12px;
+}
+
