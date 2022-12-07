@@ -1,12 +1,13 @@
 import Product from "../Product/Product";
 import '../Items/Items.css';
-const Items=({productsArray})=>{
+const Items=(props)=>{
 
 return (
     <div className="items">
-      {productsArray.map(p=>{
-         return <Product product={p}/>
+      {props.productsArray.map((p,index)=>{
+         return <Product product={p} index={index} func={props.func}/>
       })}
+      
     </div>
 )
 

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 // import Product from './components/Product/Product';
 import Items from './components/Items/Items'
 import axios from 'axios'; 
+import Cart from './components/Cart/Cart'
 
 
 function App() {
@@ -17,10 +18,16 @@ async function fetching(){
 fetching()
  },[])
  
+ const func=(index)=>{
+ console.log(index +"index print");
+ 
+ 
+ };
   return (
    <div>
-  <Items productsArray={products_arr}/>
+  <Items productsArray={products_arr} func={func}/>
    </div>
+
     
   );
 }

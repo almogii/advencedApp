@@ -1,10 +1,22 @@
-import React from "react";
-import { useState } from "react";
+import React from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 
-const Cart=(props)=>{
+const Cart = (props) => {
 
-    const [userList,setUserList]=useState([])
 
-                
+    
 
-}
+  return (
+    <div>
+      <h1>Shopping Cart</h1>
+      <div className="row">
+        <div className="col"></div>
+
+      </div>
+    </div>
+  );
+};
+
+
+export default Cart
