@@ -5,13 +5,17 @@ import "./cart.css";
 import { useNavigate } from "react-router-dom";
 import { Tab } from "react-bootstrap";
 
+
+
 const Cart = () => {
   const MAX_ITEMS = 20;
   const MIN_ITEMS = 0;
   let allItems = JSON.parse(localStorage.getItem("productAmount")); //save the data into arr
   let total_price = 0;
-  let itemId;
   let btn;
+  let userName=null;
+  let itemId;
+  
 
   const navigate = useNavigate();
   let [itemsInCart, setItemsInCart] = useState(1);
@@ -41,10 +45,28 @@ const Cart = () => {
   };
 
   const handleSubmit = (e) => {
+   
+    let cartforSave;
+    cartforSave.Username=userName 
     localStorage.setItem("isShopping", false);
+    cartforSave.itemsArray=[];
+    itemsInCart.forEach(item => {
+      let itemsAndDetils={
+        title:item.title,
+        description:item.description,
+        price:item.price,
+        amount:item.amountOfClicks
+      } 
+      cartforSave.itemsArray.push(itemsAndDetils)
+    }); 
+  cartforSave.totalPrice=total_price
+  const cart = new exports.CartModel({
+    cartforSave
+  })
+   cart.save();
     localStorage.removeItem("productAmount");
   };
-
+ console.log(userName);
   return (
     <div>
       <h1>Items at your cart</h1>
@@ -93,6 +115,11 @@ const Cart = () => {
         <button className="button" onSubmit={handleSubmit}>
           submit
         </button>
+        
+        <input type="text" onChange={(e)=>{
+          userName=e.target.value
+        }}>
+        </input>
       </p>
     </div>
   );

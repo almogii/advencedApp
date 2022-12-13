@@ -12,6 +12,11 @@ const newCart =new mongoose.Schema(
       ]
     } 
     });
-const Product = mongoose.model('CustumerCart', newCart);
+const CartModel = mongoose.model('CartModel', newCart);
 
-export default Product
+export default CartModel
+
+
+
+
+
