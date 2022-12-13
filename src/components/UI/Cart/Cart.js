@@ -37,16 +37,16 @@ const Cart = () => {
       setItemsInCart(itemsInCart);
       btn = allItems[item_id].amountOfClicks;
     }
-    //console.log("items afther adding", itemsInCart);
     localStorage.setItem("productAmount", JSON.stringify(allItems));
-    //console.log(JSON.parse(localStorage.getItem("productAmount")));
   };
 
   const handleSubmit = (e) => {
     let cartforSave = {
-      user_name: userName,
-      items_array: [],
-      total_price: 0,
+      cart: {
+        user_name: userName,
+        items_array: [],
+        total_price: 0,
+      },
     };
     localStorage.setItem("isShopping", false);
     itemsInCart.forEach((item) => {
@@ -56,22 +56,13 @@ const Cart = () => {
         price: item.price,
         amount: item.amountOfClicks,
       };
-      cartforSave.items_array.push(itemsAndDetils);
+      cartforSave.cart.items_array.push(itemsAndDetils);
     });
-    cartforSave.total_price = total_price;
-    /*const cart = new CartModel({
-      cartforSave,
-    });*/
-    console.log(cartforSave);
-    try {
-      axios.post("http://localhost:3001/addCart", cartforSave);
-    } catch (e) {
-      console.log(e.message);
-    }
-    //cart.save();
-    //localStorage.removeItem("productAmount");
+    cartforSave.cart.total_price = total_price;
+
+    axios.post("http://localhost:3001/addCart", cartforSave);
   };
-  //console.log(userName);
+
   return (
     <div>
       <h1>Items at your cart</h1>
@@ -119,7 +110,7 @@ const Cart = () => {
         </button>{" "}
         <button className="button" onClick={() => handleSubmit()}>
           submit
-        </button>
+        </button>{" "}
         <input
           type="text"
           onChange={(e) => {

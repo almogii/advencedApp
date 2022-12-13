@@ -5,8 +5,15 @@ import { Router } from "express";
 import { dblClick } from "@testing-library/user-event/dist/click.js";
 import axios from "axios";
 import cors from "cors";
-
+import bodyParser from "body-parser";
 const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
 const router = Router();
 export function mongoConnect() {
   try {
@@ -19,51 +26,10 @@ export function mongoConnect() {
 }
 
 app.use(cors("*"));
-app.post("/addCart", (req, res) => {
-  console.log("something");
-  let myData = new CartModel(req.body);
-  myData
-    .save()
-    .then((item) => {
-      res.send("item saved to database");
-    })
-    .catch((err) => {
-      res.status(400).send("unable to save to database");
-    });
+app.post("/addCart", (item) => {
+  let myData = new CartModel(item.body);
+  myData.save();
 });
-//app.use(express.json());
-/*var data = "";
-
-var config = {
-  method: "post",
-  url: "http://localhost:3001/addCart",
-  headers: {},
-  data: data,
-};
-
-axios(config)
-  .then(function (response) {
-    console.log(JSON.stringify(response.data));
-  })
-  .catch(function (error) {
-    console.log(error);
-  });*/
-/*
- */
-/*
-app.get("/addCart", (req, res) => {
-  console.log("something");
-  let myData = new CartModel(req.body);
-  myData
-    .save()
-    .then((item) => {
-      res.send("item saved to database");
-    })
-    .catch((err) => {
-      res.status(400).send("unable to save to database");
-    });
-});*/
-//app.request()
 
 app.listen(3001, function () {
   console.log("App listening at http://localhost:3001/");
